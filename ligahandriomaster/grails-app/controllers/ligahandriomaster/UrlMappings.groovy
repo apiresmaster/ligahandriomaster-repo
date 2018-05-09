@@ -13,5 +13,14 @@ class UrlMappings {
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
+		
+		"/team"(resources:'team'){
+			"/players"(resources:'player')
+		}
+		"/match"(resources:'match'){
+			"/teamMatch"(resources:'teamMatch'){
+				"/votes"(resources:'votes')
+			}
+		}
     }
 }
