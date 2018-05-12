@@ -10,7 +10,7 @@ class Player {
     Date birthDate
     String cpf
 
-    //static belongsTo = [team: Team]
+    static belongsTo = [team: Team]
 
     static constraints = {
         name maxSize: 128, unique: true

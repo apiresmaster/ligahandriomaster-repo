@@ -1,0 +1,8 @@
+import com.model.Player
+
+model {
+	Iterable<Player> playerList
+}
+
+json tmpl.player(playerList ?: [])
+

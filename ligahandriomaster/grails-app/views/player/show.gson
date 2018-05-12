@@ -1,0 +1,7 @@
+import com.model.Player
+
+model {
+	Player player
+}
+
+json tmpl.player(player)
