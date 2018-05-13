@@ -30,10 +30,13 @@ class PlayerController {
             render status: NOT_FOUND
             return
         }
-
+		
         try {
-			player.team = Team.get(params.teamId)
+			def team = Team.get(params.teamId)
+			player.team = team
+			team.addToPlayers(player)
             playerService.save(player)
+			
         } catch (ValidationException e) {
             respond player.errors, view:'create'
             return
