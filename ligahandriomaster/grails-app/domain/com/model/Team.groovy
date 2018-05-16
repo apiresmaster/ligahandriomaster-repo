@@ -3,7 +3,7 @@ package com.model
 import grails.rest.*
 import static java.util.Calendar.*
 	
-@Resource(formats=['json'])
+@Resource()
 class Team {
     private def dtAtual = new Date()
     String name

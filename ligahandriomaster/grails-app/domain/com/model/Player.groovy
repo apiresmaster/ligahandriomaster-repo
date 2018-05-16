@@ -3,7 +3,7 @@ package com.model
 import java.util.*
 import grails.rest.*
 
-@Resource(formats=['json'])
+@Resource()
 class Player {
     String name
     String nickname

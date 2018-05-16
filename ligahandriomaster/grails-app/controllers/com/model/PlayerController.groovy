@@ -7,35 +7,27 @@ class PlayerController {
 
     PlayerService playerService
 
-    static responseFormats = ['json', 'xml']
+    static responseFormats = ['json']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    //def index(Integer max) {
-    //    params.max = Math.min(max ?: 10, 100)
-    //    respond playerService.list(params), model:[playerCount: playerService.count()]
-    //}
-
-	def index(){
-		def teamId = params.teamId
-		respond Player.where{
-			team.id == teamId
-		}.list()
+	def index(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        respond playerService.list(params), model:[playerCount: playerService.count()]
 	}
+
     def show(Long id) {
         respond playerService.get(id)
     }
 
     def save(Player player) {
+        println("======= PARAMETROS - ${params} ==============")
         if (player == null) {
             render status: NOT_FOUND
             return
         }
 		
         try {
-			def team = Team.get(params.teamId)
-			player.team = team
-			team.addToPlayers(player)
-            playerService.save(player)
+            playerService.save(player, params.teamId.toInteger())
 			
         } catch (ValidationException e) {
             respond player.errors, view:'create'
