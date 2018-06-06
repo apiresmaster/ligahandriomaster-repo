@@ -1,0 +1,8 @@
+import com.model.Team
+
+model {
+	Iterable<Team> teamList
+}
+
+json tmpl.team(teamList ?: [])
+

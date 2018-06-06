@@ -6,8 +6,9 @@ import grails.transaction.NotTransactional
 import grails.validation.ValidationException
 
 @Service(Player)
-@Transactional
-class PlayerService {
+class PlayerService {	
+	
+	static scope = "prototype"
 
     @NotTransactional
     Player get(Serializable id){
@@ -31,14 +32,18 @@ class PlayerService {
     	Player.get(id).delete()
     }
 
-    Player save(Player player, int teamId){    	
+	@Transactional
+    Player save(Player player, Long teamId){
 		def team = Team.get(teamId)
-		player.team = team
-		team.addToPlayers(player)
-		if(!player.validate())
-			throw new ValidationException("Player is not valid", player.errors)
+		if(player.id == null)
+			team.addToPlayers(player)
 
-    	player.save(flush:true)
+		if(!team.validate())
+			throw new ValidationException("Player is not valid", team.errors)
+		
+    	team.save(flush:true)
+		
+		return player
     }
-
+	
 }

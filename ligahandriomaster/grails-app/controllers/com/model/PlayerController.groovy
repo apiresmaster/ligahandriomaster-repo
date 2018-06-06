@@ -20,12 +20,11 @@ class PlayerController {
     }
 
     def save(Player player) {
-        println("======= PARAMETROS - ${params} ==============")
         if (player == null) {
             render status: NOT_FOUND
             return
         }
-		
+			
         try {
             playerService.save(player, params.teamId.toInteger())
 			
@@ -41,10 +40,11 @@ class PlayerController {
         if (player == null) {
             render status: NOT_FOUND
             return
-        }
-
-        try {
-            playerService.save(player)
+        }		
+        
+		try {
+            playerService.save(player, params.teamId.toInteger())
+			
         } catch (ValidationException e) {
             respond player.errors, view:'edit'
             return
@@ -63,4 +63,5 @@ class PlayerController {
 
         render status: NO_CONTENT
     }
+	
 }

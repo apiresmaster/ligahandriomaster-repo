@@ -1,0 +1,7 @@
+import com.model.Team
+
+model {
+	Team team
+}
+
+json tmpl.team(team)

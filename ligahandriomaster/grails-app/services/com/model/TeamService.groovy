@@ -4,6 +4,8 @@ import grails.gorm.services.Service
 
 @Service(Team)
 interface TeamService {
+	
+	static scope = "prototype"
 
     Team get(Serializable id)
 

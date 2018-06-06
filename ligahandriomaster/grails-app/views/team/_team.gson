@@ -1,0 +1,13 @@
+import com.model.Team
+import com.model.Player
+
+model {
+	Team team
+}
+
+json {
+	id			team.id
+	name		team.name
+	nickname	team.nickname
+	players		tmpl.'/player/player'(team.players)
+}

@@ -26,7 +26,6 @@ class TeamController {
         }
 
         try {
-			println("Instancia Team ${team.name} - Players ${team.players}")
             teamService.save(team)
         } catch (ValidationException e) {
             respond team.errors, view:'create'
@@ -62,4 +61,5 @@ class TeamController {
 
         render status: NO_CONTENT
     }
+	
 }
